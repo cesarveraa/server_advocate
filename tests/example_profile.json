@@ -1,0 +1,507 @@
+
+{
+ "code": "dixitlaw", 
+
+"data": {
+  "settings": {
+    "theme": "dark",
+    "enableDarkModeToggle": true,
+    "defaultLanguage": "es",
+    "languages": ["es", "en"],
+    "entityType": "firm"
+  },
+  "styling": {
+    "light": {
+      "primaryColor": "#C59D5F",
+      "secondaryColor": "#8B7355",
+      "backgroundColor": "#ffffff",
+      "textPrimary": "#1a1a1a",
+      "textSecondary": "#4a4a4a",
+      "borderColor": "#d0d0d0",
+      "cardBackground": "#ffffff",
+      "footerBackground": "#1a1a1a",
+      "footerText": "#ffffff"
+    },
+    "dark": {
+      "primaryColor": "#C59D5F",
+      "secondaryColor": "#8B7355",
+      "backgroundColor": "#1a1a1a",
+      "textPrimary": "#f5f5f5",
+      "textSecondary": "#cccccc",
+      "borderColor": "#444444",
+      "cardBackground": "#2a2a2a",
+      "footerBackground": "#000000",
+      "footerText": "#f5f5f5"
+    },
+    "fontFamily": "Montserrat",
+    "fontSize": {
+      "small": "0.875rem",
+      "base": "1rem",
+      "large": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem"
+    }
+  },
+  "analytics": {
+    "visitorCount": 0,
+    "visitorLocations": [],
+    "pageClicks": {
+      "hero": 0,
+      "services": 0,
+      "team": 0,
+      "cases": 0,
+      "contact": 0,
+      "experience": 0
+    },
+    "contactClicks": {
+      "whatsapp": 0,
+      "email": 0,
+      "phone": 0
+    }
+  },
+  "content": {
+    "es": {
+      "header": {
+        "logoText": "Dixit Law",
+        "menuItems": [
+          { "label": "Inicio", "anchor": "#hero" },
+          { "label": "Servicios", "anchor": "#services" },
+          { "label": "Equipo", "anchor": "#team" },
+          { "label": "Experiencia", "anchor": "#experience" },
+          { "label": "Casos", "anchor": "#cases" },
+          { "label": "Contacto", "anchor": "#contact" }
+        ]
+      },
+      "hero": {
+        "backgroundImage": "/placeholder.svg?height=1080&width=1920",
+        "title": "Dixit Law",
+        "subtitle": "BOUTIQUE TRIAL LAW FIRM",
+        "features": [
+          {
+            "icon": "/placeholder.svg?height=60&width=60",
+            "title": "Derecho Empresarial",
+            "description": "Asesoría en derecho corporativo y transacciones comerciales.",
+            "buttonText": "Conoce más",
+            "buttonLink": "#services"
+          },
+          {
+            "icon": "/placeholder.svg?height=60&width=60",
+            "title": "Litigios",
+            "description": "Defensa en tribunales y resolución de disputas.",
+            "buttonText": "Conoce más",
+            "buttonLink": "#services"
+          },
+          {
+            "icon": "/placeholder.svg?height=60&width=60",
+            "title": "Bienes Raíces",
+            "description": "Operaciones inmobiliarias y cierres.",
+            "buttonText": "Conoce más",
+            "buttonLink": "#services"
+          }
+        ]
+      },
+      "about": {
+        "title": "Bienvenido a Dixit Law",
+        "mission": "Cuando se trata de eventos importantes que pueden requerir un abogado, nuestro equipo está aquí para brindar la representación legal experta que necesita.",
+        "values": "Nos enfocamos en nuestros clientes y manejamos cada caso con integridad y respeto, asegurándonos de que reciba la atención personalizada que merece.",
+        "buttonText": "Conoce más",
+        "buttonLink": "#services"
+      },
+      "person": {
+        "photo": "/placeholder.svg?height=200&width=200",
+        "name": "Juan Pérez, Esq.",
+        "title": "Abogado Independiente",
+        "bio": "Con más de 15 años de experiencia, Juan Pérez se especializa en derecho corporativo y litigios comerciales, brindando servicios legales de alta calidad a clientes individuales y empresariales.",
+        "experience": [
+          {
+            "dateRange": "2010–2015",
+            "role": "Asociado Junior en Firma XYZ",
+            "details": "Participó en juicios civiles y asesoró a pequeñas empresas en contratos."
+          },
+          {
+            "dateRange": "2015–2020",
+            "role": "Socio en Firma ABC",
+            "details": "Dirigió el departamento de litigios y obtuvo veredictos exitosos en casos de alto perfil."
+          },
+          {
+            "dateRange": "2020–Presente",
+            "role": "Abogado Independiente",
+            "details": "Presta servicios a clientes en transacciones inmobiliarias, fusiones y adquisiciones."
+          }
+        ],
+        "careerHighlights": [
+          "Certificación en Derecho Corporativo – Universidad de La Paz, 2009",
+          "Magíster en Derecho Comercial – Universidad Católica Boliviana, 2014",
+          "Premio al \"Mejor Litigante Joven\" – Asociación de Abogados de Bolivia, 2016"
+        ],
+        "experienceTitle": "Experiencia Profesional",
+        "highlightsTitle": "Highlights de Carrera",
+        "experienceButton": "Ver Experiencia",
+        "learnMoreButton": "Conoce más de mí"
+      },
+      "consultation": {
+        "title": "¿NECESITAS UN ABOGADO?",
+        "subtitle": "Programa una Consulta",
+        "icon": "/placeholder.svg?height=100&width=100",
+        "contactInfo": {
+          "address": "123 Main St, Tampa, FL",
+          "phone": "+1 (555) 123-4567",
+          "hours": "Lun–Vie: 9am – 5pm",
+          "email": "info@dixitlaw.com"
+        }
+      },
+      "services": {
+        "title": "Áreas de Práctica",
+        "items": [
+          {
+            "icon": "/placeholder.svg?height=50&width=50",
+            "title": "Derecho Inmobiliario y Cierres",
+            "description": "Asesoría completa en transacciones inmobiliarias.",
+            "buttonText": "Programa tu consulta",
+            "buttonLink": "#contact"
+          },
+          {
+            "icon": "/placeholder.svg?height=50&width=50",
+            "title": "Derecho Corporativo y Formación de Entidades",
+            "description": "Creación y estructuración de empresas.",
+            "buttonText": "Programa tu consulta",
+            "buttonLink": "#contact"
+          },
+          {
+            "icon": "/placeholder.svg?height=50&width=50",
+            "title": "Resolución de Disputas y Litigios",
+            "description": "Representación legal en litigios y mediaciones.",
+            "buttonText": "Programa tu consulta",
+            "buttonLink": "#contact"
+          }
+        ]
+      },
+      "team": {
+        "title": "Nuestro Equipo",
+        "members": [
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Shyamie Dixit, Esq.",
+            "role": "Especialista Certificado en Juicios Civiles y Litigios Comerciales",
+            "bioLink": "#",
+            "bioButton": "Ver Bio"
+          },
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Robert L. Vessel, Esq.",
+            "role": "Abogado",
+            "bioLink": "#",
+            "bioButton": "Ver Bio"
+          },
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Brett Sarason",
+            "role": "Abogado",
+            "bioLink": "#",
+            "bioButton": "Ver Bio"
+          },
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Ram Dixit",
+            "role": "Paralegal",
+            "bioLink": "#",
+            "bioButton": "Ver Bio"
+          }
+        ]
+      },
+      "cases": {
+        "title": "Casos de Éxito",
+        "items": [
+          {
+            "caseTitle": "Victoria en caso de litigio comercial 2024",
+            "description": "Obtuvimos un fallo favorable en disputa de $2M.",
+            "detailsLink": "#",
+            "detailsButton": "Detalles"
+          },
+          {
+            "caseTitle": "Cierre exitoso de transacción inmobiliaria 2023",
+            "description": "Asesoramos en la venta de complejo residencial.",
+            "detailsLink": "#",
+            "detailsButton": "Detalles"
+          }
+        ]
+      },
+      "contact": {
+        "title": "Contáctanos",
+        "formFields": [
+          { "label": "Nombre", "type": "text", "name": "name", "placeholder": "Tu nombre" },
+          { "label": "Correo", "type": "email", "name": "email", "placeholder": "Tu correo" },
+          { "label": "Teléfono", "type": "tel", "name": "phone", "placeholder": "Tu teléfono" },
+          { "label": "Asunto", "type": "text", "name": "subject", "placeholder": "Asunto" },
+          { "label": "Mensaje", "type": "textarea", "name": "message", "placeholder": "Tu mensaje" }
+        ],
+        "submitButtonText": "Enviar",
+        "location": {
+          "embedMapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3519.8!2d-82.4572!3d27.9506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDU3JzAyLjIiTiA4MsKwMjcnMjYuMCJX!5e0!3m2!1sen!2sus!4v1234567890"
+        },
+        "details": {
+          "address": "123 Main St, Tampa, FL",
+          "phone": "+1 (555) 123-4567",
+          "email": "info@dixitlaw.com",
+          "hours": "Lun–Vie: 9am – 5pm"
+        }
+      },
+      "footer": {
+        "quickLinks": [
+          { "label": "Inicio", "anchor": "#hero" },
+          { "label": "Áreas de Práctica", "anchor": "#services" },
+          { "label": "Contacto", "anchor": "#contact" }
+        ],
+        "resources": [
+          { "label": "Política de Privacidad", "url": "/privacy" },
+          { "label": "Aviso Legal", "url": "/disclaimer" }
+        ],
+        "languageSelector": "Idioma",
+        "copyright": "© 2025 Dixit Law | Sitio diseñado por Tu Agencia | Política de Privacidad | Aviso Legal"
+      },
+      "socialMedia": {
+        "title": "Síguenos en redes sociales",
+        "networks": [
+          { "name": "Facebook", "url": "https://facebook.com/dixitlaw", "icon": "facebook" },
+          { "name": "Twitter", "url": "https://twitter.com/dixitlaw", "icon": "twitter" },
+          { "name": "LinkedIn", "url": "https://linkedin.com/company/dixitlaw", "icon": "linkedin" },
+          { "name": "Instagram", "url": "https://instagram.com/dixitlaw", "icon": "instagram" },
+          { "name": "YouTube", "url": "https://youtube.com/c/dixitlaw", "icon": "youtube" }
+        ],
+        "contactButton": "Contáctanos ahora",
+        "contactText": "¿Tienes alguna pregunta? Estamos aquí para ayudarte."
+      },
+      "ui": {
+        "entityToggle": {
+          "firmLabel": "Firma",
+          "personLabel": "Abogado",
+          "switchToFirm": "Cambiar a Firma",
+          "switchToPerson": "Cambiar a Abogado"
+        }
+      }
+    },
+    "en": {
+      "header": {
+        "logoText": "Dixit Law",
+        "menuItems": [
+          { "label": "Home", "anchor": "#hero" },
+          { "label": "Services", "anchor": "#services" },
+          { "label": "Team", "anchor": "#team" },
+          { "label": "Experience", "anchor": "#experience" },
+          { "label": "Cases", "anchor": "#cases" },
+          { "label": "Contact", "anchor": "#contact" }
+        ]
+      },
+      "hero": {
+        "backgroundImage": "/placeholder.svg?height=1080&width=1920",
+        "title": "Dixit Law",
+        "subtitle": "BOUTIQUE TRIAL LAW FIRM",
+        "features": [
+          {
+            "icon": "/placeholder.svg?height=60&width=60",
+            "title": "Business Law",
+            "description": "Corporate law advisory and commercial transactions.",
+            "buttonText": "Learn more",
+            "buttonLink": "#services"
+          },
+          {
+            "icon": "/placeholder.svg?height=60&width=60",
+            "title": "Litigation",
+            "description": "Court defense and dispute resolution.",
+            "buttonText": "Learn more",
+            "buttonLink": "#services"
+          },
+          {
+            "icon": "/placeholder.svg?height=60&width=60",
+            "title": "Real Estate",
+            "description": "Real estate operations and closings.",
+            "buttonText": "Learn more",
+            "buttonLink": "#services"
+          }
+        ]
+      },
+      "about": {
+        "title": "Welcome to Dixit Law",
+        "mission": "When it comes to important events that may require a lawyer, our team is here to provide the expert legal representation you need.",
+        "values": "We focus on our clients and handle each case with integrity and respect, ensuring you receive the personalized attention you deserve.",
+        "buttonText": "Learn more",
+        "buttonLink": "#services"
+      },
+      "person": {
+        "photo": "/placeholder.svg?height=200&width=200",
+        "name": "John Doe, Esq.",
+        "title": "Independent Attorney",
+        "bio": "With over 15 years of experience, John Doe specializes in corporate law and commercial litigation, providing high-quality legal services to individual and business clients.",
+        "experience": [
+          {
+            "dateRange": "2010–2015",
+            "role": "Junior Associate at XYZ Firm",
+            "details": "Participated in civil trials and advised small businesses on contracts."
+          },
+          {
+            "dateRange": "2015–2020",
+            "role": "Partner at ABC Firm",
+            "details": "Led the litigation department and obtained successful verdicts in high-profile cases."
+          },
+          {
+            "dateRange": "2020–Present",
+            "role": "Independent Attorney",
+            "details": "Provides services to clients in real estate transactions, mergers and acquisitions."
+          }
+        ],
+        "careerHighlights": [
+          "Corporate Law Certification – University of La Paz, 2009",
+          "Master's in Commercial Law – Universidad Católica Boliviana, 2014",
+          "\"Best Young Litigator\" Award – Bolivia Bar Association, 2016"
+        ],
+        "experienceTitle": "Professional Experience",
+        "highlightsTitle": "Career Highlights",
+        "experienceButton": "View Experience",
+        "learnMoreButton": "Learn more about me"
+      },
+      "consultation": {
+        "title": "NEED A LAWYER?",
+        "subtitle": "Schedule a Consultation",
+        "icon": "/placeholder.svg?height=100&width=100",
+        "contactInfo": {
+          "address": "123 Main St, Tampa, FL",
+          "phone": "+1 (555) 123-4567",
+          "hours": "Mon–Fri: 9am – 5pm",
+          "email": "info@dixitlaw.com"
+        }
+      },
+      "services": {
+        "title": "Practice Areas",
+        "items": [
+          {
+            "icon": "/placeholder.svg?height=50&width=50",
+            "title": "Real Estate Law & Closings",
+            "description": "Complete advisory on real estate transactions.",
+            "buttonText": "Schedule consultation",
+            "buttonLink": "#contact"
+          },
+          {
+            "icon": "/placeholder.svg?height=50&width=50",
+            "title": "Corporate Law & Business Entity Formation",
+            "description": "Business creation and structuring.",
+            "buttonText": "Schedule consultation",
+            "buttonLink": "#contact"
+          },
+          {
+            "icon": "/placeholder.svg?height=50&width=50",
+            "title": "Dispute Resolution & Litigation",
+            "description": "Legal representation in litigation and mediation.",
+            "buttonText": "Schedule consultation",
+            "buttonLink": "#contact"
+          }
+        ]
+      },
+      "team": {
+        "title": "Our Team",
+        "members": [
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Shyamie Dixit, Esq.",
+            "role": "Double Board Certified Specialist in Civil Trial & Business Litigation",
+            "bioLink": "#",
+            "bioButton": "View Bio"
+          },
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Robert L. Vessel, Esq.",
+            "role": "Attorney",
+            "bioLink": "#",
+            "bioButton": "View Bio"
+          },
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Brett Sarason",
+            "role": "Attorney",
+            "bioLink": "#",
+            "bioButton": "View Bio"
+          },
+          {
+            "photo": "/placeholder.svg?height=150&width=150",
+            "name": "Ram Dixit",
+            "role": "Paralegal",
+            "bioLink": "#",
+            "bioButton": "View Bio"
+          }
+        ]
+      },
+      "cases": {
+        "title": "Success Stories",
+        "items": [
+          {
+            "caseTitle": "Victory in commercial litigation case 2024",
+            "description": "We obtained a favorable ruling in a $2M dispute.",
+            "detailsLink": "#",
+            "detailsButton": "Details"
+          },
+          {
+            "caseTitle": "Successful real estate transaction closing 2023",
+            "description": "We advised on the sale of a residential complex.",
+            "detailsLink": "#",
+            "detailsButton": "Details"
+          }
+        ]
+      },
+      "contact": {
+        "title": "Contact Us",
+        "formFields": [
+          { "label": "Name", "type": "text", "name": "name", "placeholder": "Your name" },
+          { "label": "Email", "type": "email", "name": "email", "placeholder": "Your email" },
+          { "label": "Phone", "type": "tel", "name": "phone", "placeholder": "Your phone" },
+          { "label": "Subject", "type": "text", "name": "subject", "placeholder": "Subject" },
+          { "label": "Message", "type": "textarea", "name": "message", "placeholder": "Your message" }
+        ],
+        "submitButtonText": "Send",
+        "location": {
+          "embedMapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3519.8!2d-82.4572!3d27.9506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDU3JzAyLjIiTiA4MsKwMjcnMjYuMCJX!5e0!3m2!1sen!2sus!4v1234567890"
+        },
+        "details": {
+          "address": "123 Main St, Tampa, FL",
+          "phone": "+1 (555) 123-4567",
+          "email": "info@dixitlaw.com",
+          "hours": "Mon–Fri: 9am – 5pm"
+        }
+      },
+      "footer": {
+        "quickLinks": [
+          { "label": "Home", "anchor": "#hero" },
+          { "label": "Practice Areas", "anchor": "#services" },
+          { "label": "Contact", "anchor": "#contact" }
+        ],
+        "resources": [
+          { "label": "Privacy Policy", "url": "/privacy" },
+          { "label": "Disclaimer", "url": "/disclaimer" }
+        ],
+        "languageSelector": "Language",
+        "copyright": "© 2025 Dixit Law | Website designed by Your Agency | Privacy Policy | Legal Notice"
+      },
+      "socialMedia": {
+        "title": "Follow us on social media",
+        "networks": [
+          { "name": "Facebook", "url": "https://facebook.com/dixitlaw", "icon": "facebook" },
+          { "name": "Twitter", "url": "https://twitter.com/dixitlaw", "icon": "twitter" },
+          { "name": "LinkedIn", "url": "https://linkedin.com/company/dixitlaw", "icon": "linkedin" },
+          { "name": "Instagram", "url": "https://instagram.com/dixitlaw", "icon": "instagram" },
+          { "name": "YouTube", "url": "https://youtube.com/c/dixitlaw", "icon": "youtube" }
+        ],
+        "contactButton": "Contact us now",
+        "contactText": "Have any questions? We're here to help."
+      },
+      "ui": {
+        "entityToggle": {
+          "firmLabel": "Firm",
+          "personLabel": "Lawyer",
+          "switchToFirm": "Switch to Firm",
+          "switchToPerson": "Switch to Lawyer"
+        }
+      }
+    }
+  }
+}
+}
