@@ -1,36 +1,44 @@
 # routers/lawyers.py
 import os
 from fastapi import APIRouter, HTTPException
-from typing import List
+from typing import List, Union
 from firebase_client import get_firestore_client
 from models.lawyer_model import LawyerProfile
 
-# Apunta al dominio donde ya está tu servicio de imágenes
-IMAGE_BASE_URL = os.getenv(
-    "IMAGE_BASE_URL",
-    "https://crea-tendencia-images.vercel.app"
-)
+IMAGE_BASE_URL = os.getenv("IMAGE_BASE_URL", "https://crea-tendencia-images.vercel.app")
+IMAGES_PREFIX = os.getenv("IMAGES_PREFIX", "/images")
 
 router = APIRouter(tags=["lawyers"])
 COL = "lawyers"
 
+# 👇 Solo estas claves se transforman a URL
+IMAGE_KEYS = {"backgroundImage", "photo", "icon", "logo"}
 
-def replace_image_ids_with_urls(node: dict):
-    for k, v in node.items():
-        if isinstance(v, dict):
-            replace_image_ids_with_urls(v)
-        elif k.endswith("Image") and isinstance(v, str):
-            # convierte el ID guardado en el payload a URL completa
-            node[k] = f"{IMAGE_BASE_URL}/images/{v}"
-    return node
+def replace_image_ids_with_urls(node: Union[dict, list]):
+    if isinstance(node, list):
+        for i, item in enumerate(node):
+            if isinstance(item, (dict, list)):
+                replace_image_ids_with_urls(item)
+        return node
 
+    if isinstance(node, dict):
+        for k, v in list(node.items()):
+            if isinstance(v, dict) or isinstance(v, list):
+                replace_image_ids_with_urls(v)
+            elif isinstance(v, str) and k in IMAGE_KEYS:
+                # si ya es URL absoluta, no tocar
+                if v.startswith(("http://", "https://", "data:", "blob:")):
+                    continue
+                # si parece un ID (sin slash), conviértelo
+                if "/" not in v:
+                    node[k] = f"{IMAGE_BASE_URL}{IMAGES_PREFIX}/{v}"
+        return node
 
 @router.post("/", response_model=LawyerProfile)
 async def create_or_update_lawyer(profile: LawyerProfile):
     db = get_firestore_client()
     db.collection(COL).document(profile.code).set(profile.dict())
     return profile
-
 
 @router.get("/{code}", response_model=LawyerProfile)
 async def get_lawyer(code: str):
@@ -39,9 +47,8 @@ async def get_lawyer(code: str):
     if not doc.exists:
         raise HTTPException(404, "Perfil no encontrado")
     data = doc.to_dict()
-    replace_image_ids_with_urls(data)
+    replace_image_ids_with_urls(data)  # ✅ ahora no toca títulos/textos
     return LawyerProfile(**data)
-
 
 @router.get("/", response_model=List[LawyerProfile])
 async def list_lawyers():
