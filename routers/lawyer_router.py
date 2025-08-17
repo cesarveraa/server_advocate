@@ -1,7 +1,7 @@
 # routers/lawyers.py
 import os
 from typing import List, Union, Optional
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request, Depends
 from pydantic import BaseModel
 from google.cloud.firestore import SERVER_TIMESTAMP
 
@@ -13,6 +13,19 @@ IMAGES_PREFIX = os.getenv("IMAGES_PREFIX", "/images")
 
 router = APIRouter(tags=["lawyers"])
 COL = "lawyers"
+
+INTERNAL_SECRET = os.getenv("INTERNAL_SECRET")
+
+def require_internal_secret(request: Request):
+    """
+    Protege rutas de escritura con un secreto interno.
+    Si INTERNAL_SECRET no está definido, NO bloquea (útil en dev).
+    """
+    if not INTERNAL_SECRET:
+        return
+    hdr = request.headers.get("x-internal-secret")
+    if hdr != INTERNAL_SECRET:
+        raise HTTPException(status_code=401, detail="Unauthorized")
 
 # Solo estas claves se transforman a URL
 IMAGE_KEYS = {"backgroundImage", "photo", "icon", "logo"}
@@ -37,15 +50,14 @@ def replace_image_ids_with_urls(node: Union[dict, list]):
                     node[k] = f"{IMAGE_BASE_URL}{IMAGES_PREFIX}/{v}"
         return node
 
-# ------- NUEVO: modelos para upsert por code -------
+# ------- body para upsert por code -------
 class UpsertBody(BaseModel):
-    # En tu panel envías body: { "data": ContentData }
-    data: dict
-    # opcionalmente permite setear timestamps/otros
-    # otros: Optional[dict] = None
-# ---------------------------------------------------
+    data: Optional[dict] = None          # ← ahora opcional
+    ownerUid: Optional[str] = None       # ← NUEVO
+# ----------------------------------------
 
-@router.post("/", response_model=LawyerProfile)
+# (opcional) crear/actualizar completo por profile → PROTEGIDO
+@router.post("/", response_model=LawyerProfile, dependencies=[Depends(require_internal_secret)])
 async def create_or_update_lawyer(profile: LawyerProfile):
     db = get_firestore_client()
     db.collection(COL).document(profile.code).set(profile.dict())
@@ -71,40 +83,47 @@ async def list_lawyers():
         out.append(LawyerProfile(**d))
     return out
 
-# ------- NUEVO: PUT /{code} para tu panel de admin -------
-@router.put("/{code}")
+# PUT por code para tu panel / link → PROTEGIDO
+@router.put("/{code}", dependencies=[Depends(require_internal_secret)])
 async def upsert_lawyer_data(code: str, body: UpsertBody):
     """
-    Upsert por code con body { "data": { ... } }.
-    No depende de LawyerProfile completo; útil para tu AdminPanel.
+    Upsert por code con body:
+      - { "ownerUid": "<uid>" }
+      - { "data": { ... } }
+      - o ambos
     """
     db = get_firestore_client()
     ref = db.collection(COL).document(code)
     snap = ref.get()
+    current = snap.to_dict() or {}
+
+    # Si intentan poner un owner distinto al ya existente → 409
+    if body.ownerUid is not None and current.get("ownerUid") and current["ownerUid"] != body.ownerUid:
+        raise HTTPException(status_code=409, detail="Esta página ya tiene dueño")
 
     to_set = {
         "code": code,
-        "data": body.data,
         "updated_at": SERVER_TIMESTAMP,
     }
+    if body.data is not None:
+        to_set["data"] = body.data
+    if body.ownerUid is not None:
+        to_set["ownerUid"] = body.ownerUid
     if not snap.exists:
         to_set["created_at"] = SERVER_TIMESTAMP
 
-    # merge=True evita pisar campos no incluidos
     ref.set(to_set, merge=True)
 
     # Devuelve el documento actualizado
     doc = ref.get()
     data = doc.to_dict() or {}
     replace_image_ids_with_urls(data)
-    # Si LawyerProfile exige campos; si falta algo, devuelve raw:
     try:
         return LawyerProfile(**data)
     except Exception:
         return data
-# ---------------------------------------------------------
 
-# (Opcional) POST /{code} para evitar 405 si alguna vez usas POST
-@router.post("/{code}")
+# (Opcional) POST /{code} para upsert con POST → PROTEGIDO
+@router.post("/{code}", dependencies=[Depends(require_internal_secret)])
 async def upsert_lawyer_data_post(code: str, body: UpsertBody):
     return await upsert_lawyer_data(code, body)

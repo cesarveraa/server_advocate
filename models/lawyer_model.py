@@ -219,6 +219,7 @@ class ContentData(BaseModel):
 class LawyerProfile(BaseModel):
     code: str
     data: ContentData
+    ownerUid: Optional[str] = None  # ← NUEVO
 
 class LawyerProfileIn(BaseModel):
     data: ContentData
