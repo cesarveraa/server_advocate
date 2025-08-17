@@ -131,18 +131,25 @@ async def upsert_lawyer_data(code: str, body: UpsertBody):
 
 # ========== AUTENTICADO (cookie idToken) ==========
 
-def get_current_user(request: Request):
-    """
-    Lee la cookie 'idToken' y verifica con Firebase Admin.
-    """
+from fastapi import Header
+
+def get_current_user(request: Request, authorization: str | None = Header(None)):
+    # 1) cookie
     token = request.cookies.get("idToken")
+
+    # 2) header: Authorization: Bearer <idToken>
+    if not token and authorization and authorization.startswith("Bearer "):
+        token = authorization.split(" ", 1)[1]
+
     if not token:
         raise HTTPException(status_code=401, detail="Unauthorized")
+
     try:
         decoded = fb_auth.verify_id_token(token)
-        return decoded  # contiene uid, email, etc.
+        return decoded
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid token")
+
 
 @auth_router.get("/me")
 def me(user = Depends(get_current_user)):
