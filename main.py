@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # 👇 importa AMBOS routers desde el archivo correcto
-from routers.lawyers import router as lawyers_router, auth_router as lawyers_auth_router
+from routers.lawyer_router import router as lawyers_router, auth_router as lawyers_auth_router
 
 ALLOWED_ORIGINS = [
     "https://advocate-sample-weld.vercel.app",
