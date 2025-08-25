@@ -133,13 +133,23 @@ async def upsert_lawyer_data(code: str, body: UpsertBody):
 
 from fastapi import Header
 
-from fastapi import Header
+import time, base64, json
+
+def _peek_claims(tok: str):
+    try:
+        payload = tok.split(".")[1]
+        # pad para base64 urlsafe
+        padding = "=" * (-len(payload) % 4)
+        raw = base64.urlsafe_b64decode((payload + padding).encode()).decode()
+        return json.loads(raw)
+    except Exception as e:
+        return {"_peek_error": str(e)}
 
 def get_current_user(request: Request, authorization: str | None = Header(None)):
     # 1) cookie
     token = request.cookies.get("idToken")
 
-    # 2) header (varias variantes, por si un proxy toca el casing)
+    # 2) header (robusto con casing/variantes)
     auth_header = authorization or request.headers.get("authorization") or request.headers.get("Authorization") or request.headers.get("x-authorization")
     if not token and auth_header:
         parts = auth_header.strip().split()
@@ -149,13 +159,23 @@ def get_current_user(request: Request, authorization: str | None = Header(None))
     if not token:
         raise HTTPException(status_code=401, detail="Unauthorized (missing token)")
 
+    # 🔎 Debug: mira iss/aud/exp vs. reloj del server
+    claims = _peek_claims(token)
+    print("IDTOKEN claims:", {
+        "iss": claims.get("iss"),
+        "aud": claims.get("aud"),
+        "exp": claims.get("exp"),
+        "now": int(time.time()),
+    })
+
     try:
+        # ⏱️ da margen por desfase de reloj
         decoded = fb_auth.verify_id_token(token, clock_skew_seconds=60)
         return decoded
     except Exception as e:
-        # registra para depurar si hiciera falta
         print("verify_id_token error:", repr(e))
         raise HTTPException(status_code=401, detail="Invalid token")
+
 
 
 
