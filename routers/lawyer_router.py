@@ -133,22 +133,30 @@ async def upsert_lawyer_data(code: str, body: UpsertBody):
 
 from fastapi import Header
 
+from fastapi import Header
+
 def get_current_user(request: Request, authorization: str | None = Header(None)):
     # 1) cookie
     token = request.cookies.get("idToken")
 
-    # 2) header: Authorization: Bearer <idToken>
-    if not token and authorization and authorization.startswith("Bearer "):
-        token = authorization.split(" ", 1)[1]
+    # 2) header (varias variantes, por si un proxy toca el casing)
+    auth_header = authorization or request.headers.get("authorization") or request.headers.get("Authorization") or request.headers.get("x-authorization")
+    if not token and auth_header:
+        parts = auth_header.strip().split()
+        if len(parts) == 2 and parts[0].lower() == "bearer":
+            token = parts[1].strip()
 
     if not token:
-        raise HTTPException(status_code=401, detail="Unauthorized")
+        raise HTTPException(status_code=401, detail="Unauthorized (missing token)")
 
     try:
-        decoded = fb_auth.verify_id_token(token)
+        decoded = fb_auth.verify_id_token(token, clock_skew_seconds=60)
         return decoded
-    except Exception:
+    except Exception as e:
+        # registra para depurar si hiciera falta
+        print("verify_id_token error:", repr(e))
         raise HTTPException(status_code=401, detail="Invalid token")
+
 
 
 @auth_router.get("/me")
